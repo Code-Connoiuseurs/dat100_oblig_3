@@ -2,6 +2,7 @@ package no.hvl.dat100.prosjekt.modell;
 
 import no.hvl.dat100.prosjekt.TODO;
 import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
+import no.hvl.dat100.prosjekt.modell.Kortfarge;
 
 /**
  * Struktur for å lagre ei samling kort. Kan lagre hele kortstokken. Det finnes
@@ -21,11 +22,8 @@ public class KortSamling {
 	 * Oppretter en tom Kortsamling med plass til MAKS_KORT (hele kortstokken).
 	 */
 	public KortSamling() {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.constructor("KortSamling"));
-		// TODO - END
+		this.samling = new Kort[MAKS_KORT];
+		this.antall = 0;
 	}
 
 	/**
@@ -38,9 +36,7 @@ public class KortSamling {
 	 * @return tabell av kort.
 	 */
 	public Kort[] getSamling() {
-		
 		return samling;
-		
 	}
 	
 	/**
@@ -49,12 +45,7 @@ public class KortSamling {
 	 * @return antall kort i samlinga.
 	 */
 	public int getAntalKort() {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		return this.antall;
 	}
 	
 	/**
@@ -63,14 +54,8 @@ public class KortSamling {
 	 * @return true om samlinga er tom, false ellers.
 	 */
 	public boolean erTom() {
-		
-		// TODO - START
-				
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		return (this.antall == 0);
 	}
-
 	/**
 	 * Legg et kort til samlinga.
 	 * 
@@ -78,12 +63,10 @@ public class KortSamling {
 	 *            er kortet som skal leggast til.
 	 */
 	public void leggTil(Kort kort) {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
-		
+		if (this.antall < samling.length) {
+			samling[antall] = kort;
+			antall++;
+		}
 	}
 	
 	/**
@@ -91,12 +74,13 @@ public class KortSamling {
 	 * slik at de normalt må stokkes før bruk.
 	 */
 	public void leggTilAlle() {
-		
-		// TODO - START
-		// Husk: bruk Regler.MAKS_KORT_FARGE for å få antall kort per farge
-		
-		throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
+		for (Kortfarge farge : Kortfarge.values()) {
+			for (int verdi = 1; verdi <= Regler.MAKS_KORT_FARGE; verdi++) {
+				Kort kort = new Kort(farge, verdi);
+				this.samling[this.antall] = kort;
+				this.antall++;
+			}
+		}
 	}
 
 	/**
@@ -149,13 +133,12 @@ public class KortSamling {
 	 * @return true om kortet finst i samlinga, false ellers.
 	 */
 	public boolean har(Kort kort) {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		// return false;
-		// TODO - END
-		
+		boolean kortFinnes = false;
+		if (kort == null) return kortFinnes;
+		for (Kort ettKort : samling) {
+			if (kort.equals(ettKort)) kortFinnes = true;
+		}
+		return kortFinnes;
 	}
 
 	/**
@@ -176,7 +159,7 @@ public class KortSamling {
 
 		// TODO - END
 	}
-
+		
 	/**
 	 * Gir kortene som en tabell av samme lengde som antall kort i samlingen
 	 * 
