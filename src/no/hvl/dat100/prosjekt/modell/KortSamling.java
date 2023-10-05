@@ -36,7 +36,7 @@ public class KortSamling {
 	 * @return tabell av kort.
 	 */
 	public Kort[] getSamling() {
-		return samling;
+		return this.samling;
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class KortSamling {
 	 *            er kortet som skal leggast til.
 	 */
 	public void leggTil(Kort kort) {
-		if (this.antall < samling.length) {
+		if (antall < samling.length) {
 			samling[antall] = kort;
 			antall++;
 		}
@@ -77,8 +77,8 @@ public class KortSamling {
 		for (Kortfarge farge : Kortfarge.values()) {
 			for (int verdi = 1; verdi <= Regler.MAKS_KORT_FARGE; verdi++) {
 				Kort kort = new Kort(farge, verdi);
-				this.samling[this.antall] = kort;
-				this.antall++;
+				samling[antall] = kort;
+				antall++;
 			}
 		}
 	}
@@ -87,11 +87,10 @@ public class KortSamling {
 	 * Fjerner alle korta fra samlinga slik at den blir tom.
 	 */
 	public void fjernAlle() {
-		
-		for (int i = 0; i <samling.length; i++) {
+		for (int i = 0; i < samling.length; i++) {
 			samling[i] = null;
 		}
-		this.antall = 0;
+		antall = 0;
 	}
 	
 	/**
@@ -101,10 +100,7 @@ public class KortSamling {
 	 *         null.
 	 */
 	public Kort seSiste() {
-		
-		if (antall == 0) {
-			return null;
-		}
+		if (erTom()) return null;
 		return samling[antall-1];
 	}
 
@@ -115,15 +111,12 @@ public class KortSamling {
 	 *         null.
 	 */
 	public Kort taSiste() {
-		
-		if (antall == 0) {
-			return null;
-		}
-		Kort tmp = samling[antall-1];
+		if (erTom()) return null;
+		Kort sisteKort = samling[antall-1];
 		samling[antall-1] = null;
 		antall--;
 		
-		return tmp;
+		return sisteKort;
 	}
 	
 	/**
@@ -134,12 +127,11 @@ public class KortSamling {
 	 * @return true om kortet finst i samlinga, false ellers.
 	 */
 	public boolean har(Kort kort) {
-		boolean kortFinnes = false;
-		if (kort == null) return kortFinnes;
+		if (kort == null) return false;
 		for (Kort ettKort : samling) {
-			if (kort.equals(ettKort)) kortFinnes = true;
+			if (kort.equals(ettKort)) return true;
 		}
-		return kortFinnes;
+		return false;
 	}
 
 	/**
@@ -153,15 +145,11 @@ public class KortSamling {
 	 */
 			 
 	public boolean fjern(Kort kort) {
-		if (kort == null) {
-			return false;
-		}
-		
-		for (int i = 0; i<samling.length; i++) {
+		if (kort == null) return false;
+		for (int i = 0; i < samling.length; i++) {
 			if (kort == samling[i]){
 				samling[i] = null;
 				antall--;
-				
 				return true;
 			}
 		}
@@ -175,12 +163,10 @@ public class KortSamling {
 	 *         som i kortsamlinga.
 	 */
 	public Kort[] getAllekort() {
-		
 		Kort[] alleKort = new Kort[antall];
-		
-			for (int i = 0; i<antall; i++) {
-				alleKort[i] = samling[i];
-			}
+		for (int i = 0; i < antall; i++) {
+			alleKort[i] = samling[i];
+		}
 		return alleKort;	
 	}
 	
