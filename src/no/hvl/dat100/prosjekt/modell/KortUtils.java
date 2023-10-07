@@ -7,7 +7,7 @@ import no.hvl.dat100.prosjekt.TODO;
 public class KortUtils {
 
 
-	static void sorter(KortSamling samling) {
+	public static void sorter(KortSamling samling) {
 		Kort[] kortArray = samling.getSamling();
 		int length = samling.getAntalKort();
 		
