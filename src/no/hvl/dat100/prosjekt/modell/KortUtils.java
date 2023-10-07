@@ -1,5 +1,6 @@
 package no.hvl.dat100.prosjekt.modell;
 
+import java.util.Collections;
 import java.util.Random;
 
 import no.hvl.dat100.prosjekt.TODO;
@@ -8,37 +9,34 @@ public class KortUtils {
 
 
 	public static void sorter(KortSamling samling) {
-		Kort[] kortArray = samling.getSamling();
+		Kort[] kortarray = samling.getSamling();
 		int length = samling.getAntalKort();
 		
 		for (int i = 0; i < length - 1; i++) {
 			for (int j = 0; j < length - i; j++) {
-				Kort erKort = kortArray[j + 1];
+				Kort erkort = kortarray[j + 1];
 				
-				if (erKort == null)  {
+				if (erkort == null)  {
 					continue;
 				}
-				if( kortArray[j].compareTo(kortArray[j + 1]) > 0) {
-					Kort temp = kortArray[j];
-					kortArray[j] = kortArray[j +1];
-					kortArray[j +1] = temp;
+				if( kortarray[j].compareTo(kortarray[j + 1]) > 0) {
+					Kort temp = kortarray[j];
+					kortarray[j] = kortarray[j +1];
+					kortarray[j +1] = temp;
 				}
 			}
 		}
 	}
 	
-	/**
-	 * Stokkar en kortsamling. 
-	 * 
-	 * @param samling
-	 * 			samling av kort som skal stokkes. 
-	 */
 	public static void stokk(KortSamling samling) {
+		Kort[] kortarray = samling.getSamling();
+		int length = samling.getAntalKort();
 		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
+			for (int i = length - 1; i > 0; i--) {				// stokker fra høyest index til start index
+				int randomise = (int)(Math.random()*(i + 1));	// (i + 1) (i > 0 i loopen) er grensene til den randomiserte indexen
+				Kort temp = kortarray[i];						// Math.random er selve randomiseren ofc
+				kortarray[i] = kortarray[randomise];
+				kortarray[randomise] = temp;
+			}	
+		}
 	}
-	
-}
