@@ -123,8 +123,13 @@ public class Bord {
 	 * til-bunken. Det vil nå være det eneste kortet i til-bunken.
 	 */
 	public void snuTilBunken() {
-		Kort øversteKortTil = new Kort(seOversteBunkeTil().getFarge(), seOversteBunkeTil().getVerdi());
-		
+		Kort øversteKortTil = this.bunkeTil.taSiste();
+		for (Kort kort : this.bunkeTil.getAllekort()) {
+			bunkeFra.leggTil(kort);
+		}
+		KortUtils.stokk(this.bunkeFra);
+		this.bunkeTil.fjernAlle();
+		leggNedBunkeTil(øversteKortTil);
 	}
 		
 	/**
@@ -134,12 +139,7 @@ public class Bord {
 	 * 			kort som skal legges ned. 
 	 * 	
 	 */
-	public void leggNedBunkeTil(Kort k) {
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
-				
+	public void leggNedBunkeTil(Kort kort) {
+		this.bunkeTil.leggTil(kort);
 	}
 }

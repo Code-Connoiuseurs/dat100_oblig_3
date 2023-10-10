@@ -24,6 +24,10 @@ public class Kort implements Comparable<Kort> {
 		this.farge = farge;
 		this.verdi = verdi;
 	}
+	public Kort(Kort kort) {
+		this.farge = kort.getFarge();
+		this.verdi = kort.getVerdi();
+	}
 
 	/**
 	 * Gir fargen på kortet.
