@@ -46,7 +46,7 @@ public class KortUtils {
 		int antallKort = kortSamling.getAntalKort();
 		
 		for (int i = antallKort - 1; i >= 0; i--) {							// stokker fra høyest index til start index
-			int tilfeldigIndeks = (int)(Math.random() * antallKort - 1);	// (i + 1) (i >= 0 i loopen) er grensene til den randomiserte indexen
+			int tilfeldigIndeks = (int)(Math.random() * antallKort + 1);	// (antallKort + 1) (i >= 0 i loopen) er grensene til den randomiserte indexen
 			Kort temp = samling[i];											// Math.random er selve randomiseren ofc
 			samling[i] = samling[tilfeldigIndeks];
 			samling[tilfeldigIndeks] = temp;
