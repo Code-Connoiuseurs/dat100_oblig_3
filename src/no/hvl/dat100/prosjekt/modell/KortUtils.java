@@ -4,6 +4,14 @@ package no.hvl.dat100.prosjekt.modell;
 //import java.util.Random;
 
 public class KortUtils {
+	/**
+	 * Sorterer en samling. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
+	 * 
+	 * @see Kort
+	 * 
+	 * @param samling
+	 * 			samling av kort som skal sorteres. 
+	 */
 	public static void sorter(KortSamling kortSamling) {
 		if (kortSamling.erTom()) return;
 		
@@ -27,7 +35,12 @@ public class KortUtils {
 		}
 		return;
 	}
-	
+	/**
+	 * Stokkar en kortsamling. 
+	 * 
+	 * @param samling
+	 * 			samling av kort som skal stokkes. 
+	 */
 	public static void stokk(KortSamling kortSamling) {
 		Kort[] samling = kortSamling.getSamling();
 		int antallKort = kortSamling.getAntalKort();
