@@ -118,13 +118,7 @@ public class Spill {
 	 * @return handlingen som skal utføres av kontroll delen.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
-
-		// TODO - START
-		// Hint: se på hvilke metoder som er tilgjengelig på en spiller
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
-
+		return spiller.nesteHandling(bord.seOversteBunkeTil());
 	}
 
 	/**
@@ -155,7 +149,6 @@ public class Spill {
 	 */
 	public void forbiSpiller(ISpiller spiller) {
 		spiller.setAntallTrekk(0);
-		Tur.skiftSpiller();
 	}
 
 	/**
