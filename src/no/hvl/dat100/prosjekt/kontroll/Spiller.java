@@ -43,6 +43,8 @@ public abstract class Spiller implements ISpiller {
 	 * @param spiller hvilken spiller det er.
 	 */
 	public Spiller(Spillere spiller) {
+		hand = new KortSamling();
+		antalltrekk = 0;
 		this.spiller = spiller;
 	}
 
